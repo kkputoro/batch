@@ -1,0 +1,433 @@
+:root {
+    --bg-color: #000000;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #1c1c1e 0%, #000000 100%);
+    --primary-color: #f5f5f7;
+    --secondary-color: #86868b;
+    --accent-color: #2997ff;
+    --accent-gradient: linear-gradient(135deg, #2997ff, #007aff);
+    --glass-bg: rgba(28, 28, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+    --card-radius: 24px;
+    --btn-radius: 980px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: var(--bg-color);
+    background-image: var(--bg-gradient);
+    color: var(--primary-color);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+/* Scroll Effect Wrapper */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax-wrapper {
+    display: none;
+    /* Deprecated */
+}
+
+/* Hero Section */
+.hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://img1.wsimg.com/isteam/ip/4b919778-5bd2-4b9d-9d13-a3421471163b/PSSSS%20photo.jpg/:/cr=t:7.57%25,l:9.02%25,w:67.4%25,h:67.57%25/rs=w:388,h:291.72932330827064,cg:true,m') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.4;
+    filter: saturate(1.2) contrast(1.1);
+    transform: scale(1.1);
+    /* Slight initial scale */
+}
+
+.hero-content {
+    text-align: center;
+    padding: 3rem 4rem;
+    background: transparent;
+    /* Removed background for cleaner zoom */
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    /* Larger initial size */
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    opacity: 0.8;
+}
+
+.scroll-indicator {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Content Section */
+.content-section {
+    position: relative;
+    background: var(--bg-color);
+    /* Solid background to cover hero */
+    min-height: 100vh;
+    padding: 6rem 0;
+    z-index: 2;
+    margin-top: 100vh;
+    /* Push content down to allow scroll space */
+    box-shadow: 0 -50px 100px rgba(0, 0, 0, 1);
+    /* Shadow to blend */
+}
+
+.container {
+    width: 100%;
+    max-width: 560px;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+    padding: 3.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out;
+}
+
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--primary-color);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: var(--font-family);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+button {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+button:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px rgba(41, 151, 255, 0.4);
+}
+
+/* Admin Trigger */
+.admin-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: rgba(28, 28, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.admin-trigger:hover {
+    background: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.admin-trigger:hover svg {
+    fill: #000;
+}
+
+.admin-trigger svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--secondary-color);
+    transition: fill 0.3s ease;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background: #1c1c1e;
+    padding: 2.5rem;
+    border-radius: var(--card-radius);
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* Admin Dashboard */
+.dashboard-container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 4rem auto;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: #1c1c1e;
+    border-radius: 16px;
+    padding: 0;
+    border: 1px solid var(--glass-border);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--primary-color);
+}
+
+th,
+td {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.btn-small {
+    width: auto;
+    padding: 0.6rem 1.2rem;
+    margin-top: 0;
+    font-size: 0.9rem;
+    border-radius: 8px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Ticket Badges */
+.ticket-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.ticket-ultra {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd60a;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.ticket-vip {
+    background: rgba(10, 132, 255, 0.15);
+    color: #64d2ff;
+    border: 1px solid rgba(10, 132, 255, 0.3);
+}
+
+.ticket-standard {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    .card {
+        padding: 2rem;
+    }
+}

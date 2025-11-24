@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Neon Nights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="header-actions">
+            <h1>Admin Dashboard</h1>
+            <div>
+                <a href="{{ url_for('export_csv') }}" class="button" style="text-decoration: none;">
+                    <button class="btn-small">Export CSV</button>
+                </a>
+                <a href="{{ url_for('index') }}" class="button" style="text-decoration: none; margin-left: 10px;">
+                    <button class="btn-small btn-secondary">Back to Home</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Ticket</th>
+                        <th>Dietary</th>
+                        <th>Registered At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registrations %}
+                    <tr>
+                        <td>#{{ reg.id }}</td>
+                        <td>{{ reg.name }}</td>
+                        <td>{{ reg.email }}</td>
+                        <td>{{ reg.phone }}</td>
+                        <td>
+                            <span class="ticket-badge ticket-{{ reg.ticket_type|lower }}">
+                                {{ reg.ticket_type }}
+                            </span>
+                        </td>
+                        <td>{{ reg.dietary_restrictions }}</td>
+                        <td>{{ reg.created_at }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 2rem; color: var(--secondary-color);">No
+                            registrations yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
